@@ -11,9 +11,9 @@ const express = require("express");
 const app = express();
 
 // Swagger
-// const swaggerUI = require("swagger-ui-express");
-// const YAML = require("yamljs");
-// const swaggerDocument = YAML.load("./swagger.yaml");
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");
 
 //Connect Db
 const connectDB = require("./db/connect");
@@ -41,9 +41,11 @@ app.use(xss());
 // extra packages
 
 // routes
+
 app.get("/", (req, res) => {
-  res.send("Jobs Api");
+  res.send('<h1>Jobs API</h1><a href="/api/v1/docs">Documentation</a>');
 });
+app.use("/api/v1/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobsRouter);
 
