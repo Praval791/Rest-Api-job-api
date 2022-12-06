@@ -4,9 +4,8 @@ info:
   contact: {}
   version: "1.0"
 servers:
+  - url: https://rest-api-jobs-api.onrender.com/api/v1
   - url: http://localhost:3000/api/v1
-  - url: https://rest-api-jobs-api.herokuapp.com/api/v1
-
     variables: {}
 paths:
   /auth/register:
